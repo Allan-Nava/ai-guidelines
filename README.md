@@ -2,6 +2,8 @@
 
 Reference repository for operational, technical, and organizational guidelines to manage software projects and DevOps platforms.
 
+Current repository version: `0.1.0`
+
 ## Contents
 
 - [guidelines.md](guidelines.md): complete best-practice framework (governance, development, testing, CI/CD, security, DevOps, Terraform, Ansible, incidents, documentation, release process).

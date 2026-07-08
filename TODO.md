@@ -35,6 +35,7 @@ Status legend:
 | AG-015 | Agent Docs | Create `AGENTS.md` with contributor operating rules | DONE | `AGENTS.md`, `README.md` | 2026-07-08 |
 | AG-018 | Tracking Docs | Add automatic issue tracking policy and backlog sync rules | DONE | `guidelines.md`, `AGENTS.md`, `README.md` | 2026-07-08 |
 | AG-017 | Versioning Docs | Create dedicated versioning guidelines for releases, APIs, mobile builds, and artifacts | DONE | `versioning-guidelines.md`, `README.md` | 2026-07-08 |
+| AG-019 | Repo Versioning | Assign initial repository version and record it consistently | DONE | `VERSION`, `CHANGELOG.md`, `README.md` | 2026-07-08 |
 
 ## Permanent Rule
 

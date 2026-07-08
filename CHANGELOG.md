@@ -6,6 +6,8 @@ The format follows Keep a Changelog and SemVer.
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-07-08
+
 ### Added
 - Expanded `guidelines.md` into a complete end-to-end framework for project management: governance, development, quality gates, CI/CD, documentation, incident management, security, backlog, and decision process.
 - Added `CLAUDE.md` with operating instructions for AI agents contributing to this repository.
