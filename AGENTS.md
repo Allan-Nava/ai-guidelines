@@ -1,57 +1,29 @@
 # AGENTS.md
 
-Agent operating guide for contributors working on this repository.
+Contributor guide for any agent (Claude, Copilot, or equivalent) editing this repository. Non-negotiables, quality bar, and priorities: `CLAUDE.md`.
 
-## Mission
+## Repository Model
 
-Maintain this repository as a high-quality, practical reference for project and engineering guidelines.
+- `guidelines.md` = canonical core (shared, cross-cutting rules).
+- `software-`, `mobile-`, `devops-`, `versioning-guidelines.md` = domain deltas that defer to the core.
+- No rule is duplicated; extend the right file instead of restating.
 
-## Mandatory Operating Rules
+## Workflow
 
-1. Keep all content in English.
-2. Track all work in TODO with clear status and evidence.
-3. Update changelog for every relevant change.
-4. Keep documentation consistent across related files.
-5. Never add secrets, credentials, or sensitive tokens.
-6. Never push without explicit user request.
-7. When issue automation exists, keep backlog-to-issue tracking stable, explicit, and idempotent.
-
-## Contribution Workflow
-
-1. Read current docs before editing.
+1. Read the relevant docs first (core + target guide).
 2. Make the smallest valid change set.
-3. Prefer extending existing sections over duplication.
-4. Record changes in TODO and changelog.
-5. Validate consistency between README, core guidelines, and specialized guides.
+3. Shared rule → `guidelines.md`; domain-specific rule → domain guide with a cross-reference to the core.
+4. Record changes in `TODO.md` and `CHANGELOG.md` (`Unreleased`).
+5. Validate consistency across README, core, and domain guides.
 
-## Quality Bar
+## Deliverables Per Relevant Change
 
-Every contribution must be:
-
-- specific,
-- actionable,
-- measurable,
-- reusable by real teams.
-
-## Content Priorities
-
-1. Quality gates and Definition of Done.
-2. Runbooks, incidents, and rollback strategy.
-3. Security and secret management.
-4. Maintainable architecture and clear ownership.
-5. Reliable operational and delivery processes.
-
-## Required Deliverables Per Relevant Change
-
-1. Updated target document(s).
-2. Updated TODO entry.
-3. Updated changelog entry.
-4. Short summary of what changed and why.
-5. Updated issue-tracking references when automatic sync is part of the workflow.
+1. Updated target doc(s).
+2. Updated `TODO.md` entry.
+3. Updated `CHANGELOG.md` entry.
+4. One-line summary of what changed and why.
+5. Updated issue-tracking references when automatic sync is used.
 
 ## Do Not
 
-- Do not rewrite whole documents without need.
-- Do not introduce conflicting policies.
-- Do not leave task execution untracked.
-- Do not push changes unless explicitly requested.
+Duplicate content across guides; introduce conflicting policies; leave work untracked; push without explicit user request.

@@ -1,213 +1,76 @@
 # Versioning Guidelines
 
-Practical standards for versioning software, APIs, infrastructure artifacts, and releases in a predictable and low-risk way.
+Versioning for apps, libraries, APIs, schemas, mobile, DB migrations, and artifacts. **Base: read `guidelines.md` first;** changelog and Definition of Done rules live in the core.
 
 ## 1. Scope
 
-These rules apply to:
+App releases, libraries/packages, APIs & event schemas, mobile app versions, DB/migration versioning, container images & infra artifacts.
 
-- application releases,
-- libraries and shared packages,
-- APIs and event schemas,
-- mobile app versions,
-- database and migration versioning,
-- container images and infrastructure artifacts.
+## 2. Principles
 
-## 2. Core Principles
+- Version communicates change impact; every release traceable to code + changelog + validation evidence.
+- Versioning supports safe rollout/rollback/compatibility; breaking changes explicit, documented, planned; consistent across repos/teams.
 
-1. Version numbers must communicate change impact clearly.
-2. Every released version must be traceable to code, changelog, and validation evidence.
-3. Versioning must support safe rollout, rollback, and compatibility decisions.
-4. Breaking changes must be explicit, documented, and planned.
-5. Versioning rules must be consistent across repositories and teams.
+## 3. SemVer (default) — `MAJOR.MINOR.PATCH`
 
-## 3. Default Versioning Model
+- **MAJOR**: incompatible/breaking change. **MINOR**: backward-compatible feature. **PATCH**: backward-compatible fix or safe internal change.
+- Pre-release suffixes: `-alpha.N` (internal, incomplete), `-beta.N` (feature-complete, wider testing), `-rc.N` (release candidate, blocker fixes only).
 
-Use Semantic Versioning by default:
+## 4. Changelog & Traceability (deltas over core)
 
-`MAJOR.MINOR.PATCH`
+- Every release maps to a committed changelog state and describes user/operator-facing impact.
+- Categories: Added, Changed, Fixed, Deprecated, Removed, Security.
 
-- `MAJOR`: incompatible or breaking change.
-- `MINOR`: backward-compatible feature addition.
-- `PATCH`: backward-compatible fix, correction, or safe internal improvement.
+## 5. Tags & Artifacts
 
-### 3.1 SemVer Decision Rules
-
-Increase:
-
-- `PATCH` when fixing defects without changing supported behavior contracts.
-- `MINOR` when adding backward-compatible functionality.
-- `MAJOR` when changing or removing supported behavior in a way that breaks consumers.
-
-### 3.2 Pre-release Versions
-
-Use pre-release suffixes for unstable builds:
-
-- `1.4.0-alpha.1`
-- `1.4.0-beta.2`
-- `1.4.0-rc.1`
-
-Rules:
-
-- `alpha`: incomplete, internal validation only.
-- `beta`: feature-complete, wider testing.
-- `rc`: release candidate, only release-blocker fixes allowed.
-
-## 4. Changelog And Release Traceability
-
-1. Every relevant release must have a changelog entry.
-2. Changelog entries must describe user-facing or operator-facing impact.
-3. Every version tag must map to a committed changelog state.
-4. Release notes must reference validation, rollout, and rollback information when relevant.
-
-Minimum changelog categories:
-
-- Added
-- Changed
-- Fixed
-- Deprecated
-- Removed
-- Security
-
-## 5. Git Tags And Release Artifacts
-
-1. Use annotated tags for releases.
-2. Tag format should be consistent, typically `vX.Y.Z`.
-3. Every tagged release must be reproducible from source.
-4. Build artifacts must include the exact version and commit reference.
-5. Never reuse or move release tags after publication.
+- Annotated tags, consistent format `vX.Y.Z`; reproducible from source; artifacts carry exact version + commit reference; never reuse/move published tags.
 
 ## 6. API Versioning
 
-### 6.1 Public API Rules
+- Version public APIs explicitly; prefer additive; deprecate before removal with documented period + migration path.
+- **Breaking** if it: removes a field/endpoint/event, changes semantics of existing behavior, changes required validation, changes response shape incompatibly, or breaks auth behavior for clients.
+- **Strategy**: pick one and use it consistently — URL (`/v1/...`) or header/media-type; don't mix without a clear reason.
 
-1. Version public APIs explicitly.
-2. Prefer additive changes over breaking changes.
-3. Deprecate before removal whenever possible.
-4. Document deprecation period and migration path.
+## 7. Event & Schema Versioning
 
-### 6.2 Breaking Change Policy
+- Version schemas explicitly; consumers tolerate additive fields; breaking changes need coordinated rollout; compatibility matrix for critical flows.
 
-A change is breaking if it:
+## 8. Database & Migrations
 
-- removes a field/endpoint/event,
-- changes semantics of existing behavior,
-- changes required validation rules,
-- changes response shape incompatibly,
-- changes authentication/authorization behavior in a way that breaks clients.
+- Every schema change has a tracked, ordered, deterministic, reviewable migration; prefer backward-compatible in rolling deploys; destructive migrations need approval + rollback; separate data vs schema migrations when risk is high.
+- Rollout order: expand schema → deploy compatible code → migrate data if needed → contract/remove old schema only after a safe window.
 
-### 6.3 Recommended API Versioning Strategy
+## 9. Mobile Versioning
 
-Prefer one stable strategy and use it consistently:
+- Marketing version (user-facing, SemVer where practical) + monotonic build number/code (must always increase).
+- Document breaking backend-contract dependencies in release notes; align app versioning with API compatibility windows.
 
-- URL versioning: `/v1/...`
-- header/media-type versioning when the platform already supports it
+## 10. Infrastructure & Artifacts
 
-Do not mix strategies without a clear reason.
+- **Images**: immutable version tag; `latest` is not a deployment contract; keep commit SHA/build metadata; preserve artifact identity across environment promotion.
+- **Terraform modules**: version explicitly; pin module + provider in consumers; upgrade notes for breaking changes.
+- **Ansible roles**: version when reused across repos/environments; track platform/OS compatibility; release notes + rollout guidance for breaking behavior.
 
-## 7. Event And Schema Versioning
+## 11. Branching & Release Flow
 
-1. Version event schemas explicitly.
-2. Consumers must tolerate additive fields where possible.
-3. Breaking schema changes require coordinated rollout.
-4. Producers and consumers must have compatibility matrix documentation for critical flows.
+- Merge reviewed changes into the main integration branch; stabilize on a short-lived release branch only when needed; tag after validation passes; record release notes + changelog before publication; patch production from the correct branch lineage.
+- Avoid long-lived divergence; keep release branches short-lived; hotfixes update both release history and mainline.
 
-## 8. Database And Migration Versioning
+## 12. Deprecation
 
-1. Every schema change must have a tracked migration.
-2. Migrations must be ordered, deterministic, and reviewable.
-3. Prefer backward-compatible migrations in rolling deployments.
-4. Destructive migrations require explicit approval and rollback planning.
-5. Data migrations and schema migrations must be separated when risk is high.
+- Mark deprecated behavior explicitly; document removal target version/window; communicate migration path early; monitor active usage before removal.
 
-Recommended rollout order:
+## 13. Validation (core §13 + deltas)
 
-1. expand schema,
-2. deploy compatible application code,
-3. migrate data if needed,
-4. contract/remove old schema only after safe window.
+Also: version bump matches real impact; tag strategy respected.
 
-## 9. Mobile Application Versioning
+## 14. Anti-Patterns
 
-Use two separate concepts:
+- Version numbers without defined meaning; breaking changes in patch/minor; reused tags; releases without changelog; `latest` as the only deployable reference; coupling API/app/DB changes without a compatibility strategy.
 
-- marketing version: user-facing release (`2.3.0`)
-- build number/code: internal monotonic build identifier
+## 15. Templates
 
-Rules:
-
-1. Marketing version follows SemVer where practical.
-2. Build number/code must always increase.
-3. Breaking backend contract dependencies must be documented in release notes.
-4. Coordinate app release versioning with API compatibility windows.
-
-## 10. Infrastructure And Artifact Versioning
-
-### 10.1 Container Images
-
-1. Every image must have an immutable version tag.
-2. `latest` is not a deployment contract.
-3. Keep commit SHA or build metadata traceable.
-4. Promotion across environments should preserve artifact identity.
-
-### 10.2 Terraform And Infrastructure Modules
-
-1. Version reusable Terraform modules explicitly.
-2. Pin module and provider versions in consumers.
-3. Document upgrade notes for breaking infrastructure module changes.
-
-### 10.3 Ansible Roles And Playbooks
-
-1. Version shared Ansible roles when reused across multiple repositories/environments.
-2. Track role compatibility with supported platforms or OS versions.
-3. Breaking operational behavior requires release notes and rollout guidance.
-
-## 11. Branching And Release Flow
-
-Recommended release flow:
-
-1. Merge reviewed changes into the main integration branch.
-2. Stabilize on a release branch only when needed for coordination or hardening.
-3. Tag the release after validation passes.
-4. Record release notes and changelog before publication.
-5. Patch production from the correct branch lineage to keep history coherent.
-
-Rules:
-
-- Avoid long-lived divergence without reason.
-- Keep release branches short-lived.
-- Hotfixes must update both release history and ongoing mainline where relevant.
-
-## 12. Deprecation Policy
-
-1. Mark deprecated behavior explicitly.
-2. Document removal target version or time window.
-3. Communicate migration path early.
-4. Monitor active usage before removal when possible.
-
-## 13. Validation And Governance
-
-A versioned release is valid only when:
-
-1. version bump matches real impact,
-2. changelog is updated,
-3. tests and validation checks passed,
-4. release tag strategy is respected,
-5. rollback path is known,
-6. TODO and documentation are updated when relevant.
-
-## 14. Anti-Patterns To Avoid
-
-- Using version numbers without defined meaning.
-- Shipping breaking changes in patch/minor releases.
-- Reusing tags.
-- Publishing releases without changelog entries.
-- Using `latest` as the only deployable artifact reference.
-- Coupling API, app, and database changes without compatibility strategy.
-
-## 15. Quick Templates
-
-### 15.1 Release Entry Template
+### Release Entry
 
 ```md
 ## Release X.Y.Z
@@ -218,7 +81,7 @@ A versioned release is valid only when:
 - Rollback notes:
 ```
 
-### 15.2 Deprecation Template
+### Deprecation Notice
 
 ```md
 ## Deprecation Notice
@@ -229,7 +92,7 @@ A versioned release is valid only when:
 - Migration path:
 ```
 
-### 15.3 Compatibility Note Template
+### Compatibility Note
 
 ```md
 ## Compatibility Note

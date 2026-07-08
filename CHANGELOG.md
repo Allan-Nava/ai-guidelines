@@ -6,6 +6,17 @@ The format follows Keep a Changelog and SemVer.
 
 ## [Unreleased]
 
+### Changed
+- Restructured the guidelines into a **core + domain-delta** model to cut token usage for AI-agent consumption: shared rules (testing, security, CI/CD, Definition of Done, docs, templates) now live only in `guidelines.md`; `software-`, `mobile-`, `devops-`, and `versioning-guidelines.md` keep only domain-specific deltas and cross-reference the core.
+- Removed the duplicated DevOps/Terraform/Ansible section from `guidelines.md`; `devops-guidelines.md` is now the single source for Infrastructure-as-Code standards.
+- Compressed prose across all guides into dense, bullet-first form without dropping any rule.
+- Reworked `README.md` into a router/index (read-order + which-guide table) enabling progressive disclosure.
+- Deduplicated `CLAUDE.md` and `AGENTS.md` into complementary roles (non-negotiables/quality vs repository model/workflow).
+
+### Added
+- Anti-duplication rule and the core/delta repository model, documented in `CLAUDE.md` and `AGENTS.md`.
+- Reusable Release Readiness template in the core (`guidelines.md`), extended by mobile releases.
+
 ## [0.1.0] - 2026-07-08
 
 ### Added

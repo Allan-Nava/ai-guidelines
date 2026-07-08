@@ -1,76 +1,41 @@
 # CLAUDE.md
 
-Operating instructions for AI agents (Claude/Copilot or equivalent) working on this repository.
+Operating instructions for AI agents working on **this** repository. Full contributor workflow: `AGENTS.md`.
 
 ## Mission
 
-Keep this repository as a reliable, up-to-date reference for project management best practices.
+Keep this repo a reliable, token-efficient reference of engineering guidelines. Every change must improve clarity, operational quality, decision traceability, or cross-document consistency.
 
-Every contribution must improve at least one of these aspects:
+## Non-negotiables
 
-- guideline clarity,
-- operational quality,
-- decision traceability,
-- cross-document consistency.
-
-## Mandatory Rules
-
-1. Always update related documentation when substantial content changes.
-2. Always update `CHANGELOG.md` for relevant changes.
-3. Do not introduce unverifiable or unjustified content.
-4. Do not add secrets, tokens, or credentials to versioned files.
-5. Avoid duplication: extend existing sections when possible.
-6. Always track everything in `TODO.md` with updated status and evidence.
-7. Never push (manually or via automation) without explicit user request.
+1. Track all work in `TODO.md` (ID, status, last update, evidence).
+2. Update `CHANGELOG.md` (`Unreleased`) for every relevant change.
+3. Never commit secrets/credentials.
+4. Never push without explicit user request.
+5. Keep all content in English.
+6. No duplication: shared rules live only in `guidelines.md`; domain guides defer to it. Extend, don't restate.
+7. No unverifiable or conflicting content.
 
 ## Content Quality
 
-Every change must be:
-
-- specific (avoid vague statements),
-- actionable (practical instructions),
-- measurable (criteria/checklists),
-- consistent with the rest of the repository.
-
-## Editorial Style
-
-1. Use clear, action-oriented technical writing.
-2. Use descriptive titles and short sections.
-3. Prefer concrete bullet points.
-4. Avoid buzzwords without operational meaning.
-5. Explicitly state trade-offs when present.
+Specific, actionable, measurable, consistent. Action-oriented technical writing; descriptive titles; concrete bullets; explicit trade-offs; no empty buzzwords.
 
 ## Priority Order For Improvements
 
 1. Definition of Done, quality gates, test strategy.
 2. Incident management, runbooks, rollback.
 3. Changelog, release process, ownership.
-4. Security and secret handling.
-5. Onboarding and documentation maintainability.
+4. Security & secret handling.
+5. Onboarding & maintainability.
 
-## Pre-Delivery Checklist
+## Before Delivering
 
-Before considering a change complete:
-
-1. Verify consistency across `README.md`, `guidelines.md`, and `CLAUDE.md`.
-2. Update `CHANGELOG.md` under `Unreleased`.
-3. Confirm examples/templates are valid and reusable.
-4. Reduce redundancy and repeated phrasing.
-5. Confirm the contribution is useful to a real team, not purely theoretical.
+1. Consistency across README, `guidelines.md`, domain guides, and CLAUDE/AGENTS.
+2. `CHANGELOG.md` updated under `Unreleased`.
+3. Templates/examples valid and reusable.
+4. Redundancy reduced (no content that belongs in the core).
+5. `TODO.md` updated for touched tasks.
 
 ## Do Not
 
-- Do not rewrite entire documents without need.
-- Do not change tone or structure without reason.
-- Do not remove existing rules without equivalent replacement.
-- Do not add policies that conflict with existing guidance.
-
-## Expected Agent Output
-
-When applicable, the agent should deliver:
-
-1. updates to the relevant files,
-2. changelog update,
-3. short summary of decisions made,
-4. remaining gaps and suggested next steps,
-5. updated `TODO.md` with status for touched tasks.
+Rewrite whole docs without need; change tone/structure without reason; remove a rule without an equivalent replacement; add conflicting policies.

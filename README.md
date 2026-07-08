@@ -1,28 +1,35 @@
 # ai-guidelines
 
-Reference repository for operational, technical, and organizational guidelines to manage software projects and DevOps platforms.
+Reference guidelines for software, mobile, and DevOps projects. Optimized for AI-agent consumption: read the core once, then load only the domain guide your task needs. All content is in English.
 
-Current repository version: `0.1.0`
+Repository version: `0.1.0`
 
-## Contents
+## Read order
 
-- [guidelines.md](guidelines.md): complete best-practice framework (governance, development, testing, CI/CD, security, DevOps, Terraform, Ansible, incidents, documentation, release process).
-- [software-guidelines.md](software-guidelines.md): software engineering standards dedicated to backend/frontend development.
-- [mobile-guidelines.md](mobile-guidelines.md): dedicated mobile engineering standards for Swift/Kotlin with default architecture pattern and mandatory TDD.
-- [devops-guidelines.md](devops-guidelines.md): deeper companion reference for DevOps standards with explicit Terraform and Ansible workflows.
-- [versioning-guidelines.md](versioning-guidelines.md): dedicated versioning standards for SemVer, APIs, mobile releases, database migrations, and infrastructure artifacts.
-- [AGENTS.md](AGENTS.md): contributor agent operating guide for documentation quality and execution rules.
-- [CLAUDE.md](CLAUDE.md): operating instructions for AI agents/assistants contributing to this repository.
-- [TODO.md](TODO.md): single operational backlog with full status/evidence tracking.
-- [CHANGELOG.md](CHANGELOG.md): change history (Keep a Changelog).
+1. [guidelines.md](guidelines.md) — core, cross-cutting rules (read first, always).
+2. The one domain guide matching your task (table below).
+3. [AGENTS.md](AGENTS.md) / [CLAUDE.md](CLAUDE.md) — rules for contributing to **this** repo.
 
-Backlog tracking may be connected to automated issue synchronization, but the repository backlog remains the governed traceability layer unless documented otherwise.
+## Which guide
 
-## Goal
+| Task | Read |
+|---|---|
+| Any project (baseline) | [guidelines.md](guidelines.md) |
+| Backend / frontend code | [software-guidelines.md](software-guidelines.md) |
+| iOS / Android apps | [mobile-guidelines.md](mobile-guidelines.md) |
+| Infra, Terraform, Ansible | [devops-guidelines.md](devops-guidelines.md) |
+| Releases, APIs, migrations, artifacts | [versioning-guidelines.md](versioning-guidelines.md) |
 
-Consolidate proven practices in one place, inspired by production-first workflows:
+Domain guides contain only their specifics and defer to [guidelines.md](guidelines.md) for shared rules (testing, security, CI/CD, Definition of Done, docs, templates). No rule is duplicated across files.
 
-- strong documentation discipline (runbooks, incidents, reports),
-- operational standardization (checklists, templates, naming),
-- delivery reliability (preflight, canary, post-check, rollback),
-- explicit ownership and continuous improvement.
+## Non-negotiables
+
+- Track all work in [TODO.md](TODO.md); update [CHANGELOG.md](CHANGELOG.md) for every relevant change.
+- Never commit secrets. Never push without explicit user request.
+- Keep all content in English.
+
+## Governance
+
+- [TODO.md](TODO.md) — single backlog with stable IDs, status, evidence.
+- [CHANGELOG.md](CHANGELOG.md) — Keep a Changelog + SemVer.
+- Backlog may sync to an issue tracker, but `TODO.md` stays the governed source of truth unless documented otherwise.
