@@ -12,6 +12,7 @@ The format follows Keep a Changelog and SemVer.
 - Updated `README.md` with repository goal and document map.
 - Added `TODO.md` as the single operational backlog with full tracking of tasks, status, and evidence.
 - Added explicit policy in the guidelines: always track everything and never push without explicit user request.
+- Added `software-guidelines.md` with dedicated software engineering standards for backend and frontend development.
 
 ### Changed
 - Converted the main documentation files to English (`README.md`, `guidelines.md`, `CLAUDE.md`, `TODO.md`, `CHANGELOG.md`).

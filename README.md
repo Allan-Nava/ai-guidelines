@@ -5,6 +5,7 @@ Reference repository for operational, technical, and organizational guidelines t
 ## Contents
 
 - [guidelines.md](guidelines.md): complete best-practice framework (governance, development, testing, CI/CD, security, incidents, documentation, release process).
+- [software-guidelines.md](software-guidelines.md): software engineering standards dedicated to backend/frontend development.
 - [CLAUDE.md](CLAUDE.md): operating instructions for AI agents/assistants contributing to this repository.
 - [TODO.md](TODO.md): single operational backlog with full status/evidence tracking.
 - [CHANGELOG.md](CHANGELOG.md): change history (Keep a Changelog).

@@ -29,6 +29,7 @@ Status legend:
 | AG-009 | Improvement | Define backlog priority convention (`P0/P1/P2`) | TODO | to be planned | 2026-07-08 |
 | AG-010 | Improvement | Add complete workflow example: task -> change -> changelog | TODO | to be planned | 2026-07-08 |
 | AG-011 | Docs Policy | Remove repository references from documentation and keep wording generic | DONE | `README.md`, `guidelines.md` | 2026-07-08 |
+| AG-012 | Software Docs | Create dedicated backend/frontend software development guidelines | DONE | `software-guidelines.md`, `README.md` | 2026-07-08 |
 
 ## Permanent Rule
 
