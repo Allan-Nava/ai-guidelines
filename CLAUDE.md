@@ -20,6 +20,8 @@ Ogni contributo deve migliorare almeno uno di questi aspetti:
 3. Non introdurre contenuti non verificabili o non motivati.
 4. Non inserire segreti, token o credenziali in file versionati.
 5. Non creare duplicati: preferire estendere sezioni esistenti.
+6. Tracciare sempre tutto in `TODO.md` con stato e evidenze aggiornate.
+7. Non pushare mai (ne manualmente ne via automazioni) senza richiesta esplicita dell'utente.
 
 ## Qualita Del Contenuto
 
@@ -71,3 +73,4 @@ Quando applicabile, l'agente deve consegnare:
 2. aggiornamento changelog,
 3. breve sintesi delle scelte fatte,
 4. eventuali gap rimasti e prossimi passi suggeriti.
+5. aggiornamento di `TODO.md` con stato dei task toccati.

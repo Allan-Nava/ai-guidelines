@@ -44,6 +44,7 @@ Regole:
 
 - `README.md`: onboarding rapido e mappa repository.
 - `CHANGELOG.md`: Keep a Changelog + SemVer.
+- `TODO.md`: backlog operativa unica e tracciata di tutto il lavoro.
 - `docs/runbooks/`: procedure operative pianificate.
 - `docs/incidents/`: post-mortem datati (`YYYY-MM-DD-slug.md`).
 - `docs/reports/`: output periodici o ad-hoc (health-check, audit, verifiche).
@@ -205,6 +206,15 @@ Formato minimo consigliato:
 3. Definire priorita, owner, milestone.
 4. Tenere separati lavoro pianificato e finding operativi.
 5. Mantenere sync idempotente se esiste automazione issue.
+
+### 10.1 Regola Operativa Obbligatoria: TODO E Tracciamento Totale
+
+1. Tutto il lavoro deve essere tracciato in `TODO.md` con stato aggiornato.
+2. Ogni task deve avere almeno: ID, descrizione, stato, ultima modifica, evidenza/link.
+3. Nessuna attivita fuori traccia (no task in chat senza registrazione nel backlog).
+4. Ogni modifica ai contenuti deve aggiornare anche `CHANGELOG.md`.
+5. E vietato eseguire push automatici da agent o automazioni non richieste esplicitamente dall'utente.
+6. Regola permanente: tracciare sempre tutto, non pushare mai senza istruzione esplicita.
 
 ## 11. Processo Decisionale
 

@@ -6,6 +6,7 @@ Repository di riferimento per linee guida operative, tecniche e organizzative pe
 
 - [guidelines.md](guidelines.md): framework completo di best practice (governance, sviluppo, test, CI/CD, sicurezza, incident, documentazione, release).
 - [CLAUDE.md](CLAUDE.md): istruzioni operative per agent/assistenti AI che contribuiscono al repository.
+- [TODO.md](TODO.md): backlog operativa unica con tracciamento stato/evidenze.
 - [CHANGELOG.md](CHANGELOG.md): storico modifiche (Keep a Changelog).
 
 ## Obiettivo
