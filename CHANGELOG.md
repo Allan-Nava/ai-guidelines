@@ -17,6 +17,7 @@ The format follows Keep a Changelog and SemVer.
 - Added `devops-guidelines.md` with dedicated DevOps standards, including explicit Terraform and Ansible workflows and validation gates.
 - Added `AGENTS.md` as the contributor agent operating guide for quality, traceability, and no-push rules.
 - Added `versioning-guidelines.md` with dedicated standards for SemVer, API versioning, mobile release versioning, migrations, and artifact versioning.
+- Added automatic issue-tracking policy to the main guidelines and agent rules, including stable IDs, idempotent sync, and auditability requirements.
 
 ### Changed
 - Converted the main documentation files to English (`README.md`, `guidelines.md`, `CLAUDE.md`, `TODO.md`, `CHANGELOG.md`).

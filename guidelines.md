@@ -285,6 +285,23 @@ Minimum format:
 4. Keep planned work separate from operational findings.
 5. Keep sync idempotent when issue automation exists.
 
+### 10.0 Automatic Issue Tracking
+
+When the team uses issue automation, backlog tracking must support deterministic synchronization with the issue tracker.
+
+Rules:
+
+1. Every backlog item must have a stable reference ID.
+2. The backlog file remains the source of truth unless a different source is explicitly documented.
+3. Automatic sync must be idempotent: rerunning it must not create duplicates.
+4. Each synced issue must preserve a machine-readable backlink to the source backlog item.
+5. Status transitions must be explicit and auditable.
+6. Closed or completed items must be reflected consistently in both the backlog and the issue tracker.
+7. Automation must never silently rewrite issue meaning, scope, or priority.
+8. Sync scripts/jobs must document required tokens, scopes, and failure modes.
+9. If automatic sync fails, the failure must be visible and produce a recoverable manual path.
+10. Issue automation must never bypass the repository traceability rules for TODO, changelog, and documentation.
+
 ### 10.1 Mandatory Operating Rule: TODO And Full Traceability
 
 1. All work must be tracked in `TODO.md` with updated status.

@@ -14,6 +14,8 @@ Reference repository for operational, technical, and organizational guidelines t
 - [TODO.md](TODO.md): single operational backlog with full status/evidence tracking.
 - [CHANGELOG.md](CHANGELOG.md): change history (Keep a Changelog).
 
+Backlog tracking may be connected to automated issue synchronization, but the repository backlog remains the governed traceability layer unless documented otherwise.
+
 ## Goal
 
 Consolidate proven practices in one place, inspired by production-first workflows:

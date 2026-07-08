@@ -14,6 +14,7 @@ Maintain this repository as a high-quality, practical reference for project and 
 4. Keep documentation consistent across related files.
 5. Never add secrets, credentials, or sensitive tokens.
 6. Never push without explicit user request.
+7. When issue automation exists, keep backlog-to-issue tracking stable, explicit, and idempotent.
 
 ## Contribution Workflow
 
@@ -46,6 +47,7 @@ Every contribution must be:
 2. Updated TODO entry.
 3. Updated changelog entry.
 4. Short summary of what changed and why.
+5. Updated issue-tracking references when automatic sync is part of the workflow.
 
 ## Do Not
 
