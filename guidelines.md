@@ -140,6 +140,85 @@ Recommended pipeline for high-risk changes:
 - Rollback strategy is mandatory for irreversible changes.
 - Avoid opaque deployments: all steps must be reconstructable.
 
+### 6.3 DevOps, Terraform, And Ansible Standards
+
+Infrastructure and operations changes must follow explicit automation and validation rules.
+
+#### 6.3.1 Core DevOps Principles
+
+1. Infrastructure must be declarative and reproducible.
+2. Every operational change must be reviewable, testable, and reversible.
+3. Production safety has priority over execution speed.
+4. Repeatable work must be automated.
+5. Every relevant intervention must leave operational evidence.
+
+#### 6.3.2 Terraform Standards
+
+1. Use remote state with locking enabled.
+2. Isolate state by environment and critical stack.
+3. Restrict state access by least privilege.
+4. Prefer focused reusable modules with explicit typed inputs/outputs.
+5. Pin provider versions and document upgrade paths.
+
+Required Terraform workflow:
+
+1. Run `terraform fmt` and `terraform validate`.
+2. Generate and review `terraform plan` output.
+3. Require explicit approval for destructive or high-risk changes.
+4. Apply only reviewed plans.
+5. Run post-apply smoke checks and document the outcome.
+
+Terraform safety rules:
+
+- Destructive changes require explicit approval.
+- Force-recreate operations require a rollback plan.
+- Drift detection should run on a schedule.
+- Resource tagging standards are mandatory.
+
+Terraform validation baseline:
+
+- formatting,
+- validation,
+- lint/policy checks,
+- module tests for critical shared modules,
+- plan-level regression review for sensitive stacks.
+
+#### 6.3.3 Ansible Standards
+
+1. Keep inventories environment-scoped.
+2. Use `group_vars` and `host_vars` consistently.
+3. Avoid variable shadowing and undocumented overrides.
+4. Keep retired hosts in explicit legacy/archive inventory.
+5. Roles must be idempotent and narrowly focused.
+6. Use handlers for controlled restarts and reloads.
+
+Required Ansible workflow:
+
+1. Preflight: confirm inventory, maintenance window, impact, and baseline health.
+2. Dry-run: execute `ansible-playbook --check --diff` and inspect unexpected changes.
+3. Canary: run with `--limit` on one node or one controlled batch.
+4. Rolling rollout: apply with explicit `serial` or equivalent progressive strategy.
+5. Post-check: validate health and real functional smoke tests.
+6. Evidence: save command summary, results, and follow-up in docs/report.
+
+Ansible validation baseline:
+
+- `ansible-lint`,
+- syntax-check for affected playbooks,
+- role-level validation for critical roles,
+- idempotency verification where feasible.
+
+#### 6.3.4 Infrastructure Definition Of Done
+
+An infrastructure change is done only when:
+
+1. Terraform/Ansible checks passed,
+2. rollout followed preflight, dry-run, canary, and post-check,
+3. rollback strategy is clear,
+4. monitoring impact is validated,
+5. docs, changelog, and TODO are updated,
+6. evidence is recorded.
+
 ## 7. Operational Documentation
 
 ### 7.1 Documentation Standard
