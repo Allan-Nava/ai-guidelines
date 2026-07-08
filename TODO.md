@@ -33,6 +33,7 @@ Status legend:
 | AG-013 | Mobile Docs | Create dedicated mobile app guidelines (Swift/Kotlin, architecture pattern, mandatory TDD) | DONE | `mobile-guidelines.md`, `README.md` | 2026-07-08 |
 | AG-014 | DevOps Docs | Create dedicated DevOps guidelines including Terraform and Ansible standards | DONE | `devops-guidelines.md`, `README.md` | 2026-07-08 |
 | AG-015 | Agent Docs | Create `AGENTS.md` with contributor operating rules | DONE | `AGENTS.md`, `README.md` | 2026-07-08 |
+| AG-017 | Versioning Docs | Create dedicated versioning guidelines for releases, APIs, mobile builds, and artifacts | DONE | `versioning-guidelines.md`, `README.md` | 2026-07-08 |
 
 ## Permanent Rule
 
