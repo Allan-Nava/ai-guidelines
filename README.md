@@ -1,19 +1,19 @@
 # ai-guidelines
 
-Repository di riferimento per linee guida operative, tecniche e organizzative per la gestione di progetti software e piattaforme DevOps.
+Reference repository for operational, technical, and organizational guidelines to manage software projects and DevOps platforms.
 
-## Contenuto
+## Contents
 
-- [guidelines.md](guidelines.md): framework completo di best practice (governance, sviluppo, test, CI/CD, sicurezza, incident, documentazione, release).
-- [CLAUDE.md](CLAUDE.md): istruzioni operative per agent/assistenti AI che contribuiscono al repository.
-- [TODO.md](TODO.md): backlog operativa unica con tracciamento stato/evidenze.
-- [CHANGELOG.md](CHANGELOG.md): storico modifiche (Keep a Changelog).
+- [guidelines.md](guidelines.md): complete best-practice framework (governance, development, testing, CI/CD, security, incidents, documentation, release process).
+- [CLAUDE.md](CLAUDE.md): operating instructions for AI agents/assistants contributing to this repository.
+- [TODO.md](TODO.md): single operational backlog with full status/evidence tracking.
+- [CHANGELOG.md](CHANGELOG.md): change history (Keep a Changelog).
 
-## Obiettivo
+## Goal
 
-Consolidare in un unico posto pratiche collaudate ispirate a workflow reali usati in ambienti production-first, con particolare riferimento ai pattern osservati in `devops_hiway` e `compress-bot`:
+Consolidate proven practices in one place, inspired by production-first workflows, especially patterns observed in `devops_hiway` and `compress-bot`:
 
-- rigore documentale (runbook, incident, report),
-- standardizzazione operativa (checklist, template, naming),
-- affidabilita operativa (preflight, canary, post-check, rollback),
-- ownership esplicita e miglioramento continuo.
+- strong documentation discipline (runbooks, incidents, reports),
+- operational standardization (checklists, templates, naming),
+- delivery reliability (preflight, canary, post-check, rollback),
+- explicit ownership and continuous improvement.
