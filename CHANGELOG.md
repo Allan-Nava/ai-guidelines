@@ -1,14 +1,18 @@
 # Changelog
 
-Tutte le modifiche rilevanti a questa repository sono documentate in questo file.
+All notable changes to this repository are documented in this file.
 
-Il formato segue Keep a Changelog e il versionamento SemVer.
+The format follows Keep a Changelog and SemVer.
 
 ## [Unreleased]
 
 ### Added
-- Estese in modo completo le linee guida in `guidelines.md` con framework end-to-end per gestione progetto: governance, sviluppo, quality gate, CI/CD, documentazione, incident management, sicurezza, backlog e decision making.
-- Aggiunto `CLAUDE.md` con istruzioni operative per agent AI che contribuiscono alla repository.
-- Aggiornato `README.md` con obiettivo della repository e mappa dei documenti principali.
-- Aggiunto `TODO.md` come backlog operativa unica con tracciamento completo di task, stato ed evidenze.
-- Aggiunta policy esplicita nelle guide: tracciare sempre tutto e non pushare mai senza richiesta esplicita dell'utente.
+- Expanded `guidelines.md` into a complete end-to-end framework for project management: governance, development, quality gates, CI/CD, documentation, incident management, security, backlog, and decision process.
+- Added `CLAUDE.md` with operating instructions for AI agents contributing to this repository.
+- Updated `README.md` with repository goal and document map.
+- Added `TODO.md` as the single operational backlog with full tracking of tasks, status, and evidence.
+- Added explicit policy in the guidelines: always track everything and never push without explicit user request.
+
+### Changed
+- Converted the main documentation files to English (`README.md`, `guidelines.md`, `CLAUDE.md`, `TODO.md`, `CHANGELOG.md`).
+- Removed direct references to external repository names in documentation and kept wording generic.

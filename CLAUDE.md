@@ -1,76 +1,76 @@
 # CLAUDE.md
 
-Istruzioni operative per agent AI (Claude/Copilot o equivalenti) che lavorano su questa repository.
+Operating instructions for AI agents (Claude/Copilot or equivalent) working on this repository.
 
-## Missione
+## Mission
 
-Mantenere la repo come riferimento affidabile e aggiornato sulle best practice di gestione progetto.
+Keep this repository as a reliable, up-to-date reference for project management best practices.
 
-Ogni contributo deve migliorare almeno uno di questi aspetti:
+Every contribution must improve at least one of these aspects:
 
-- chiarezza delle linee guida,
-- qualita operativa,
-- tracciabilita delle decisioni,
-- coerenza tra documenti.
+- guideline clarity,
+- operational quality,
+- decision traceability,
+- cross-document consistency.
 
-## Regole Obbligatorie
+## Mandatory Rules
 
-1. Aggiornare sempre documentazione correlata quando si modifica contenuto sostanziale.
-2. Aggiornare sempre `CHANGELOG.md` per modifiche rilevanti.
-3. Non introdurre contenuti non verificabili o non motivati.
-4. Non inserire segreti, token o credenziali in file versionati.
-5. Non creare duplicati: preferire estendere sezioni esistenti.
-6. Tracciare sempre tutto in `TODO.md` con stato e evidenze aggiornate.
-7. Non pushare mai (ne manualmente ne via automazioni) senza richiesta esplicita dell'utente.
+1. Always update related documentation when substantial content changes.
+2. Always update `CHANGELOG.md` for relevant changes.
+3. Do not introduce unverifiable or unjustified content.
+4. Do not add secrets, tokens, or credentials to versioned files.
+5. Avoid duplication: extend existing sections when possible.
+6. Always track everything in `TODO.md` with updated status and evidence.
+7. Never push (manually or via automation) without explicit user request.
 
-## Qualita Del Contenuto
+## Content Quality
 
-Ogni modifica deve essere:
+Every change must be:
 
-- specifica (evitare frasi vaghe),
-- azionabile (indicazioni applicabili),
-- misurabile (criteri o checklist),
-- consistente con il resto della repo.
+- specific (avoid vague statements),
+- actionable (practical instructions),
+- measurable (criteria/checklists),
+- consistent with the rest of the repository.
 
-## Stile Editoriale
+## Editorial Style
 
-1. Scrittura tecnica chiara, orientata all'azione.
-2. Titoli descrittivi e sezioni corte.
-3. Liste con punti concreti.
-4. Evitare buzzword senza pratica operativa.
-5. Esplicitare trade-off quando presenti.
+1. Use clear, action-oriented technical writing.
+2. Use descriptive titles and short sections.
+3. Prefer concrete bullet points.
+4. Avoid buzzwords without operational meaning.
+5. Explicitly state trade-offs when present.
 
-## Priorita Quando Si Propongono Miglioramenti
+## Priority Order For Improvements
 
-1. Definition of Done, quality gate, test strategy.
-2. Incident management, runbook, rollback.
+1. Definition of Done, quality gates, test strategy.
+2. Incident management, runbooks, rollback.
 3. Changelog, release process, ownership.
-4. Sicurezza e gestione segreti.
-5. Onboarding e mantenibilita della documentazione.
+4. Security and secret handling.
+5. Onboarding and documentation maintainability.
 
-## Checklist Pre-Consegna
+## Pre-Delivery Checklist
 
-Prima di considerare completata una modifica:
+Before considering a change complete:
 
-1. Verifica coerenza tra `README.md`, `guidelines.md`, `CLAUDE.md`.
-2. Aggiorna `CHANGELOG.md` in `Unreleased`.
-3. Controlla che esempi/template siano validi e riusabili.
-4. Riduci ridondanze e frasi ripetitive.
-5. Conferma che il contributo sia utile a un team reale, non solo teorico.
+1. Verify consistency across `README.md`, `guidelines.md`, and `CLAUDE.md`.
+2. Update `CHANGELOG.md` under `Unreleased`.
+3. Confirm examples/templates are valid and reusable.
+4. Reduce redundancy and repeated phrasing.
+5. Confirm the contribution is useful to a real team, not purely theoretical.
 
-## Non Fare
+## Do Not
 
-- Non riscrivere l'intero documento senza bisogno.
-- Non cambiare tono o struttura senza motivo.
-- Non rimuovere regole esistenti senza sostituzione equivalente.
-- Non aggiungere policy in conflitto con quanto gia definito.
+- Do not rewrite entire documents without need.
+- Do not change tone or structure without reason.
+- Do not remove existing rules without equivalent replacement.
+- Do not add policies that conflict with existing guidance.
 
-## Output Atteso Da Un Agente
+## Expected Agent Output
 
-Quando applicabile, l'agente deve consegnare:
+When applicable, the agent should deliver:
 
-1. modifica ai file interessati,
-2. aggiornamento changelog,
-3. breve sintesi delle scelte fatte,
-4. eventuali gap rimasti e prossimi passi suggeriti.
-5. aggiornamento di `TODO.md` con stato dei task toccati.
+1. updates to the relevant files,
+2. changelog update,
+3. short summary of decisions made,
+4. remaining gaps and suggested next steps,
+5. updated `TODO.md` with status for touched tasks.

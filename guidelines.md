@@ -1,32 +1,31 @@
 # Project Guidelines
 
-Linee guida complete per gestire un progetto software in modo scalabile, leggibile e operabile.
+Complete guidelines for managing software projects in a scalable, readable, and operable way.
 
-Base pratica: principi ricavati anche da workflow documentati nelle repository `devops_hiway` (runbook, incident, reporting operativo) e `compress-bot` (chatops, ownership, affidabilita, backlog idempotente).
+This document captures practices from production-oriented environments, with focus on:
 
-Questo documento incorpora pratiche emerse da contesti reali orientati a operations e affidabilita, con particolare attenzione a:
+- repository as the source of truth,
+- process and output standardization,
+- delivery quality,
+- incident management and continuous improvement.
 
-- repository come fonte di verita,
-- standardizzazione di processi e output,
-- qualita del delivery,
-- gestione incident e miglioramento continuo.
+## 1. Foundational Principles
 
-## 1. Principi Fondativi
+1. The repository is the official working system: code, documentation, decisions, and runbooks must live together.
+2. Every relevant change must leave traceable evidence: what was done, why, and how to validate it.
+3. Automate whenever possible, but keep critical steps manually verifiable.
+4. Clearly separate facts, assumptions, and decisions.
+5. A green build is not automatically a healthy system: always validate real behavior.
 
-1. La repository e il sistema ufficiale di lavoro: codice, documentazione, decisioni e runbook devono vivere insieme.
-2. Ogni cambiamento rilevante deve lasciare traccia: cosa e stato fatto, perche, come validarlo.
-3. Automatizzare dove possibile, ma rendere sempre verificabile manualmente ogni passaggio critico.
-4. Separare chiaramente fatti, ipotesi e decisioni.
-5. Green build non equivale automaticamente a sistema sano: verificare sempre il comportamento reale.
+## 2. Minimum Repository Structure
 
-## 2. Struttura Minima Del Repository
-
-Struttura consigliata:
+Recommended structure:
 
 ```text
 /
 |- README.md
 |- CHANGELOG.md
+|- TODO.md
 |- guidelines.md
 |- CLAUDE.md
 |- docs/
@@ -40,281 +39,281 @@ Struttura consigliata:
 |- ci/
 ```
 
-Regole:
+Rules:
 
-- `README.md`: onboarding rapido e mappa repository.
+- `README.md`: quick onboarding and repository map.
 - `CHANGELOG.md`: Keep a Changelog + SemVer.
-- `TODO.md`: backlog operativa unica e tracciata di tutto il lavoro.
-- `docs/runbooks/`: procedure operative pianificate.
-- `docs/incidents/`: post-mortem datati (`YYYY-MM-DD-slug.md`).
-- `docs/reports/`: output periodici o ad-hoc (health-check, audit, verifiche).
-- `docs/decisions/`: ADR o note decisionali tecniche.
+- `TODO.md`: single operational backlog with complete tracking.
+- `docs/runbooks/`: planned operational procedures.
+- `docs/incidents/`: dated post-mortems (`YYYY-MM-DD-slug.md`).
+- `docs/reports/`: periodic or ad-hoc outputs (health checks, audits, verifications).
+- `docs/decisions/`: ADRs or technical decision notes.
 
-## 3. Governance E Ownership
+## 3. Governance And Ownership
 
-1. Ogni area deve avere owner esplicito (team o persona).
-2. Ogni servizio deve avere:
-	- owner tecnico,
-	- canale alert,
-	- runbook di triage,
-	- check di salute.
-3. Le responsabilita devono essere documentate, non implicite.
-4. TODO e debito tecnico in una sola backlog di progetto, con ID stabili.
+1. Every area must have explicit ownership (team or person).
+2. Every service must have:
+   - technical owner,
+   - alert channel,
+   - triage runbook,
+   - health checks.
+3. Responsibilities must be documented, never implicit.
+4. TODO items and technical debt must live in one project backlog with stable IDs.
 
-## 4. Convenzioni Di Sviluppo
+## 4. Development Conventions
 
 ### 4.1 Utilities
 
-- Shared helpers in moduli dedicati.
-- Utility piccole e focalizzate, evitare classi omnibus.
-- No duplicazione di logica generica.
+- Place shared helpers in dedicated modules.
+- Prefer small, focused utilities over catch-all classes.
+- Avoid duplicating generic logic.
 
 ### 4.2 Constants
 
-- Vietate stringhe di dominio hardcoded se esiste una costante.
-- Literals centralizzati in un modulo unico.
-- Confronti su valori noti via costanti/enumerazioni.
+- Do not hardcode domain strings when constants exist.
+- Centralize literals in a single constants module.
+- Use constants/enums for known value comparisons.
 
-### 4.3 DTO E Contratti API
+### 4.3 DTOs And API Contracts
 
-- DTO nei package/moduli API dedicati.
-- No DTO pubblici annidati dentro servizi.
-- Mapping esplicito ai boundary (handler/service).
+- Keep DTOs in dedicated API/DTO modules.
+- Do not define public DTOs as nested service classes.
+- Keep mapping explicit at boundaries (handler/service).
 
 ### 4.4 Layering
 
-- Handler/API dipendono da servizi, non da repository.
-- Business logic nei servizi/dominio.
-- Handler sottili: parsing, validazione, mapping response, error handling.
+- Handlers/APIs depend on services, not repositories.
+- Business logic belongs in service/domain layers.
+- Handlers stay thin: parsing, validation, response mapping, error handling.
 
-### 4.5 Dipendenze
+### 4.5 Dependencies
 
-- Dipendenze obbligatorie non nullable.
-- Vietati fallback silenziosi che saltano persistenza o integrazioni critiche.
-- Le dipendenze opzionali devono essere modellate esplicitamente.
+- Required dependencies must not be nullable.
+- Do not allow silent fallbacks that skip critical integrations or persistence.
+- Model optional dependencies explicitly.
 
-### 4.6 Cache E Stato Runtime
+### 4.6 Runtime State And Caching
 
-- Definire ownership di ogni cache.
-- Separare cache di configurazione da stato runtime.
-- Definire invalidazione/refresh espliciti.
-- Rendere evidente se uno stato e locale nodo o cluster-wide.
+- Define ownership of every cache.
+- Separate configuration caches from runtime state.
+- Define explicit invalidation/refresh paths.
+- Make node-local vs cluster-wide behavior explicit.
 
-### 4.7 Unita E Conversioni
+### 4.7 Units And Conversion Boundaries
 
-- Non mescolare unita (ms/s, bytes/MB, UTC/localtime).
-- Conversioni ai boundary con test dedicati.
+- Do not mix units (ms/s, bytes/MB, UTC/local time).
+- Keep conversions at clear boundaries and cover them with tests.
 
-## 5. Testing E Quality Gates
+## 5. Testing And Quality Gates
 
-1. Ogni bug fix deve includere almeno un test che avrebbe catturato il bug.
-2. Ogni nuova feature deve avere:
-	- test unitari della logica,
-	- test integrazione nei boundary critici,
-	- smoke test end-to-end se coinvolge workflow principali.
-3. I test devono coprire sia path nominali sia error path.
-4. Definire esplicitamente cosa e considerato warning vs failure.
-5. Inserire gate minimi in CI:
-	- lint,
-	- test,
-	- build,
-	- security scan base.
+1. Every bug fix must include at least one test that would have caught the bug.
+2. Every new feature should include:
+   - unit tests for core logic,
+   - boundary integration tests,
+   - end-to-end smoke tests for critical workflows.
+3. Cover both happy paths and error paths.
+4. Define warning vs failure behavior explicitly.
+5. Add minimum CI gates:
+   - lint,
+   - tests,
+   - build,
+   - baseline security scanning.
 
-## 6. CI/CD E Rilascio
+## 6. CI/CD And Release
 
-### 6.1 Strategia Di Deploy
+### 6.1 Deployment Strategy
 
-Pipeline consigliata per modifiche infrastrutturali o ad alto rischio:
+Recommended pipeline for high-risk changes:
 
-1. Preflight: baseline dello stato corrente.
-2. Dry-run: verifica differenze attese.
-3. Canary: rollout su 1 nodo/istanza.
-4. Rolling: rollout progressivo.
-5. Post-check: validazione completa.
-6. Smoke test: verifica funzionale reale.
-7. Chiusura: report + changelog + follow-up.
+1. Preflight: baseline current system state.
+2. Dry-run: validate expected diff only.
+3. Canary: roll out to one node/instance.
+4. Rolling rollout: progressive deployment.
+5. Post-check: full validation.
+6. Smoke tests: real functional verification.
+7. Closure: report + changelog + follow-up.
 
-### 6.2 Regole Operative
+### 6.2 Operational Rules
 
-- Ogni release deve avere note di rilascio in changelog.
-- Taggare release in SemVer quando applicabile.
-- Rollback strategy obbligatoria per cambiamenti irreversibili.
-- Evitare deployment opachi: i passaggi devono essere ricostruibili.
+- Every release must have changelog notes.
+- Tag releases with SemVer when applicable.
+- Rollback strategy is mandatory for irreversible changes.
+- Avoid opaque deployments: all steps must be reconstructable.
 
-## 7. Documentazione Operativa
+## 7. Operational Documentation
 
-### 7.1 Standard Documentazione
+### 7.1 Documentation Standard
 
-Ogni intervento significativo deve produrre un documento in `docs/` con:
+Every significant intervention must produce a document in `docs/` with:
 
-1. Contesto.
-2. Obiettivo.
-3. Azioni eseguite.
-4. Evidenze (log/output principali).
-5. Esito.
-6. Rischi residui e follow-up.
+1. Context.
+2. Goal.
+3. Actions executed.
+4. Evidence (key logs/outputs).
+5. Outcome.
+6. Residual risks and follow-up.
 
-### 7.2 Runbook
+### 7.2 Runbooks
 
-Un runbook deve includere:
+A runbook must include:
 
-- prerequisiti,
-- comandi step-by-step,
-- criteri di successo,
+- prerequisites,
+- step-by-step commands,
+- success criteria,
 - rollback,
-- troubleshooting rapido.
+- fast troubleshooting notes.
 
 ### 7.3 Incident Post-Mortem
 
-Formato minimo consigliato:
+Minimum format:
 
-1. Data e severita.
-2. Sintomo osservato.
-3. Impatto.
+1. Date and severity.
+2. Observed symptom.
+3. Impact.
 4. Root cause.
 5. Timeline.
-6. Mitigazione immediata.
-7. Azioni preventive.
-8. Link a evidenze/log.
+6. Immediate mitigation.
+7. Preventive actions.
+8. Links to logs/evidence.
 
-## 8. Osservabilita E Monitoring
+## 8. Observability And Monitoring
 
-1. Ogni servizio deve avere health-check ripetibile.
-2. Gli script di check devono avere interfaccia coerente:
-	- `--list` per target,
-	- `--mode` per categoria check,
-	- codici di uscita documentati.
-3. Distinguere chiaramente:
-	- errore sistemico del checker,
-	- warning operativo,
-	- failure reale del servizio.
-4. Archiviare report periodici con naming datato.
-5. Introdurre metriche di affidabilita (uptime, MTTR, MTTA) dove utile.
+1. Every service must expose repeatable health checks.
+2. Check scripts must have consistent interfaces:
+   - `--list` for targets,
+   - `--mode` for check categories,
+   - documented exit codes.
+3. Clearly distinguish:
+   - checker/systemic failures,
+   - operational warnings,
+   - real service failures.
+4. Archive periodic reports using dated naming.
+5. Track reliability metrics where useful (uptime, MTTR, MTTA).
 
-## 9. Sicurezza E Segreti
+## 9. Security And Secrets
 
-1. Mai committare segreti o credenziali.
-2. Token/chiavi solo via secret manager o variabili protette.
-3. Sanitizzare log e report da dati sensibili.
-4. Minimo privilegio per ogni integrazione.
-5. Documentare rotazione credenziali e procedure di emergenza.
+1. Never commit secrets or credentials.
+2. Use secret managers or protected variables for tokens/keys.
+3. Sanitize logs and reports for sensitive data.
+4. Apply least privilege to every integration.
+5. Document credential rotation and emergency procedures.
 
-## 10. Gestione Backlog
+## 10. Backlog Management
 
-1. Una sola fonte di verita per backlog (file o board con ID stabili).
-2. Classificare ogni item (bug, feature, hardening, tech debt).
-3. Definire priorita, owner, milestone.
-4. Tenere separati lavoro pianificato e finding operativi.
-5. Mantenere sync idempotente se esiste automazione issue.
+1. Use one source of truth for backlog (file or board with stable IDs).
+2. Classify each item (bug, feature, hardening, technical debt).
+3. Define priority, owner, and milestone.
+4. Keep planned work separate from operational findings.
+5. Keep sync idempotent when issue automation exists.
 
-### 10.1 Regola Operativa Obbligatoria: TODO E Tracciamento Totale
+### 10.1 Mandatory Operating Rule: TODO And Full Traceability
 
-1. Tutto il lavoro deve essere tracciato in `TODO.md` con stato aggiornato.
-2. Ogni task deve avere almeno: ID, descrizione, stato, ultima modifica, evidenza/link.
-3. Nessuna attivita fuori traccia (no task in chat senza registrazione nel backlog).
-4. Ogni modifica ai contenuti deve aggiornare anche `CHANGELOG.md`.
-5. E vietato eseguire push automatici da agent o automazioni non richieste esplicitamente dall'utente.
-6. Regola permanente: tracciare sempre tutto, non pushare mai senza istruzione esplicita.
+1. All work must be tracked in `TODO.md` with updated status.
+2. Every task must include at least: ID, description, status, last update, and evidence/link.
+3. No off-record work (no chat-only tasks without backlog entry).
+4. Every meaningful content change must update `CHANGELOG.md`.
+5. Automatic pushes by agents/automations are forbidden unless explicitly requested by the user.
+6. Permanent rule: track everything, never push without explicit user instruction.
 
-## 11. Processo Decisionale
+## 11. Decision Process
 
-1. Decisioni architetturali importanti devono essere registrate (ADR).
-2. Ogni ADR deve esplicitare:
-	- contesto,
-	- opzioni valutate,
-	- decisione,
-	- conseguenze.
-3. Le decisioni obsolete vanno segnate come superseded, non cancellate.
+1. Important architectural decisions must be recorded (ADR).
+2. Every ADR must include:
+   - context,
+   - options considered,
+   - decision,
+   - consequences.
+3. Obsolete decisions should be marked as superseded, not deleted.
 
-## 12. Onboarding E Collaborazione
+## 12. Onboarding And Collaboration
 
-Checklist onboarding minima:
+Minimum onboarding checklist:
 
-1. Leggere `README.md`, `guidelines.md`, `CLAUDE.md`.
-2. Configurare ambiente locale.
-3. Eseguire test e lint.
-4. Simulare un flusso standard (modifica + test + changelog).
-5. Leggere almeno un incident e un runbook recenti.
+1. Read `README.md`, `guidelines.md`, and `CLAUDE.md`.
+2. Configure local environment.
+3. Run tests and lint.
+4. Simulate a standard flow (change + test + changelog update).
+5. Read at least one recent incident and one runbook.
 
-Regole collaborazione:
+Collaboration rules:
 
-- PR piccole e focused.
-- Commit con messaggi chiari e intent-based.
-- Review con focus su rischi, regressioni e verificabilita.
+- Keep PRs small and focused.
+- Use clear, intent-based commit messages.
+- Review with focus on risk, regressions, and verifiability.
 
 ## 13. Definition Of Done
 
-Una modifica e considerata completa solo se:
+A change is complete only when:
 
-1. codice aggiornato,
-2. test pertinenti aggiornati/verdi,
-3. documentazione aggiornata,
-4. changelog aggiornato,
-5. rischi e rollback chiariti,
-6. evidenze di validazione disponibili.
+1. code is updated,
+2. relevant tests are updated/passing,
+3. documentation is updated,
+4. changelog is updated,
+5. risks and rollback are clarified,
+6. validation evidence is available.
 
-## 14. Anti-Pattern Da Evitare
+## 14. Anti-Patterns To Avoid
 
-- Documentazione disallineata rispetto al codice.
-- Decisioni critiche solo in chat, non tracciate.
-- Hotfix non documentati.
-- Fallback silenziosi che nascondono errori reali.
-- Monitoring che segnala solo stati nominali senza contesto.
+- Documentation that drifts from code/reality.
+- Critical decisions made only in chat and not recorded.
+- Undocumented hotfixes.
+- Silent fallbacks that hide real failures.
+- Monitoring that reports nominal status without context.
 
-## 15. Template Rapidi
+## 15. Quick Templates
 
-### 15.1 Template Report Operativo
+### 15.1 Operational Report Template
 
 ```md
-# <Titolo>
+# <Title>
 
-## Contesto
+## Context
 
-## Obiettivo
+## Goal
 
-## Azioni Eseguite
+## Actions Executed
 
-## Evidenze
+## Evidence
 
-## Esito
+## Outcome
 
 ## Follow-up
 ```
 
-### 15.2 Template Incident
+### 15.2 Incident Template
 
 ```md
 # YYYY-MM-DD - <slug>
 
-## Sintomo
+## Symptom
 
-## Impatto
+## Impact
 
 ## Root Cause
 
 ## Timeline
 
-## Mitigazione
+## Mitigation
 
-## Azioni Preventive
+## Preventive Actions
 ```
 
-### 15.3 Template ADR
+### 15.3 ADR Template
 
 ```md
-# ADR-<numero> - <titolo>
+# ADR-<number> - <title>
 
-## Contesto
+## Context
 
-## Opzioni
+## Options
 
-## Decisione
+## Decision
 
-## Conseguenze
+## Consequences
 ```
 
-## 16. Regola Finale
+## 16. Final Rule
 
-Preferire sempre chiarezza, tracciabilita e ripetibilita alla velocita apparente.
+Always prefer clarity, traceability, and repeatability over apparent speed.
 
-Quando un cambiamento non e spiegabile e verificabile da chi non era presente, il processo non e ancora maturo.
+If a change cannot be explained and validated by someone who was not present, the process is not mature yet.

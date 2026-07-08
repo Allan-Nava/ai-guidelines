@@ -1,35 +1,36 @@
 # TODO
 
-Backlog operativa unica della repository `ai-guidelines`.
+Single operational backlog for the `ai-guidelines` repository.
 
-Regole:
-- Tracciare sempre tutto: ogni attivita deve esistere qui.
-- Aggiornare stato, data e note ad ogni avanzamento.
-- Allegare evidenze (file aggiornati o decisioni prese).
-- Non eseguire mai push senza richiesta esplicita dell'utente.
+Rules:
+- Track everything: every activity must be recorded here.
+- Update status, date, and notes on every progress step.
+- Attach evidence (updated files or documented decisions).
+- Never push without explicit user request.
 
-Legenda stati:
-- `TODO`: da iniziare
-- `IN_PROGRESS`: in lavorazione
-- `BLOCKED`: bloccato da dipendenza
-- `DONE`: completato
+Status legend:
+- `TODO`: not started
+- `IN_PROGRESS`: currently being worked on
+- `BLOCKED`: blocked by dependency
+- `DONE`: completed
 
 ## Master TODO
 
-| ID | Area | Task | Stato | Evidenza | Ultimo Aggiornamento |
+| ID | Area | Task | Status | Evidence | Last Update |
 |---|---|---|---|---|---|
-| AG-001 | Foundation | Definire linee guida complete di gestione progetto | DONE | `guidelines.md` | 2026-07-08 |
-| AG-002 | Agent Rules | Scrivere policy operative per agent in `CLAUDE.md` | DONE | `CLAUDE.md` | 2026-07-08 |
-| AG-003 | Repo Docs | Allineare `README.md` come mappa ufficiale contenuti | DONE | `README.md` | 2026-07-08 |
-| AG-004 | Tracking | Creare changelog conforme Keep a Changelog | DONE | `CHANGELOG.md` | 2026-07-08 |
-| AG-005 | Governance | Inserire regola obbligatoria: tracciare sempre tutto | DONE | `guidelines.md` sez. 10.1 | 2026-07-08 |
-| AG-006 | Governance | Inserire regola obbligatoria: non pushare mai senza richiesta esplicita | DONE | `guidelines.md` sez. 10.1 + `CLAUDE.md` | 2026-07-08 |
-| AG-007 | Process | Definire template operativi (report, incident, ADR) | DONE | `guidelines.md` sez. 15 | 2026-07-08 |
-| AG-008 | Improvement | Preparare struttura `docs/` con template iniziali | TODO | da pianificare | 2026-07-08 |
-| AG-009 | Improvement | Definire convenzione ID backlog e priorita (`P0/P1/P2`) | TODO | da pianificare | 2026-07-08 |
-| AG-010 | Improvement | Aggiungere esempio completo di workflow: task -> change -> changelog | TODO | da pianificare | 2026-07-08 |
+| AG-001 | Foundation | Define complete project management guidelines | DONE | `guidelines.md` | 2026-07-08 |
+| AG-002 | Agent Rules | Define operating rules for agents in `CLAUDE.md` | DONE | `CLAUDE.md` | 2026-07-08 |
+| AG-003 | Repo Docs | Align `README.md` as official content map | DONE | `README.md` | 2026-07-08 |
+| AG-004 | Tracking | Create changelog aligned with Keep a Changelog | DONE | `CHANGELOG.md` | 2026-07-08 |
+| AG-005 | Governance | Add mandatory rule: always track everything | DONE | `guidelines.md` section 10.1 | 2026-07-08 |
+| AG-006 | Governance | Add mandatory rule: never push without explicit request | DONE | `guidelines.md` section 10.1 + `CLAUDE.md` | 2026-07-08 |
+| AG-007 | Process | Define operational templates (report, incident, ADR) | DONE | `guidelines.md` section 15 | 2026-07-08 |
+| AG-008 | Improvement | Prepare `docs/` structure with starter templates | TODO | to be planned | 2026-07-08 |
+| AG-009 | Improvement | Define backlog priority convention (`P0/P1/P2`) | TODO | to be planned | 2026-07-08 |
+| AG-010 | Improvement | Add complete workflow example: task -> change -> changelog | TODO | to be planned | 2026-07-08 |
+| AG-011 | Docs Policy | Remove repository references from documentation and keep wording generic | DONE | `README.md`, `guidelines.md` | 2026-07-08 |
 
-## Regola Permanente
+## Permanent Rule
 
-Tracciamento sempre attivo e completo su questo file.
-Nessun push va eseguito da agent/automazioni senza richiesta esplicita dell'utente.
+Traceability must always be active and complete in this file.
+No push must be executed by agents/automations without explicit user request.

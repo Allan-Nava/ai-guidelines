@@ -11,7 +11,7 @@ Reference repository for operational, technical, and organizational guidelines t
 
 ## Goal
 
-Consolidate proven practices in one place, inspired by production-first workflows, especially patterns observed in `devops_hiway` and `compress-bot`:
+Consolidate proven practices in one place, inspired by production-first workflows:
 
 - strong documentation discipline (runbooks, incidents, reports),
 - operational standardization (checklists, templates, naming),
