@@ -63,7 +63,7 @@ UI Intent/Action → ViewModel → Use Case → result → ViewModel emits new i
 
 Checklist: failing-test-first history for new logic? business logic outside views/composables? unidirectional explicit state? docs/changelog/TODO updated?
 
-## 10. Definition of Done (core §13 + deltas)
+## 10. Definition of Done (core §14 + deltas)
 
 Also: TDD cycle complete with passing tests; architecture boundaries respected; critical UI states (loading/empty/error/success); observability hooks added; security/privacy reviewed.
 

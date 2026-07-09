@@ -24,7 +24,7 @@ Status legend:
 | AG-004 | Tracking | Create changelog aligned with Keep a Changelog | DONE | `CHANGELOG.md` | 2026-07-08 |
 | AG-005 | Governance | Add mandatory rule: always track everything | DONE | `guidelines.md` section 10.1 | 2026-07-08 |
 | AG-006 | Governance | Add mandatory rule: never push without explicit request | DONE | `guidelines.md` section 10.1 + `CLAUDE.md` | 2026-07-08 |
-| AG-007 | Process | Define operational templates (report, incident, ADR) | DONE | `guidelines.md` section 15 | 2026-07-08 |
+| AG-007 | Process | Define operational templates (report, incident, ADR) | DONE | `guidelines.md` section 16 | 2026-07-08 |
 | AG-008 | Improvement | Prepare `docs/` structure with starter templates | TODO | to be planned | 2026-07-08 |
 | AG-009 | Improvement | Define backlog priority convention (`P0/P1/P2`) | TODO | to be planned | 2026-07-08 |
 | AG-010 | Improvement | Add complete workflow example: task -> change -> changelog | TODO | to be planned | 2026-07-08 |
@@ -37,6 +37,7 @@ Status legend:
 | AG-017 | Versioning Docs | Create dedicated versioning guidelines for releases, APIs, mobile builds, and artifacts | DONE | `versioning-guidelines.md`, `README.md` | 2026-07-08 |
 | AG-019 | Repo Versioning | Assign initial repository version and record it consistently | DONE | `VERSION`, `CHANGELOG.md`, `README.md` | 2026-07-08 |
 | AG-020 | Optimization | Restructure guides into core + domain-delta model, compress prose, add README router to reduce token usage | DONE | all `*-guidelines.md`, `README.md`, `CLAUDE.md`, `AGENTS.md`, `CHANGELOG.md` | 2026-07-08 |
+| AG-021 | Process | Add spec-driven change flow (OpenSpec-style) to core guidelines | DONE | `guidelines.md` §11 + §16 template, `README.md`, `CHANGELOG.md` | 2026-07-09 |
 
 ## Permanent Rule
 

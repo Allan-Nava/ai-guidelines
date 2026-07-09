@@ -33,3 +33,4 @@ Domain guides contain only their specifics and defer to [guidelines.md](guidelin
 - [TODO.md](TODO.md) — single backlog with stable IDs, status, evidence.
 - [CHANGELOG.md](CHANGELOG.md) — Keep a Changelog + SemVer.
 - Backlog may sync to an issue tracker, but `TODO.md` stays the governed source of truth unless documented otherwise.
+- Spec-driven changes: non-trivial work starts as a versioned change proposal (spec) agreed before code — see [guidelines.md](guidelines.md) §11.

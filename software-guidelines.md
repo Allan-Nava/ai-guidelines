@@ -50,7 +50,7 @@ Align backend/frontend delivery: predictable architecture, low-regression delive
 
 Checklist: behavior explicit & test-covered? contracts backward compatible? failure/retry safe? docs updated?
 
-## 9. Definition of Done (core §13 + deltas)
+## 9. Definition of Done (core §14 + deltas)
 
 Also: observability impact covered; API/contract compatibility addressed.
 

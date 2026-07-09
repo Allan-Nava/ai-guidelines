@@ -21,6 +21,8 @@ Canonical, cross-cutting rules for any project. Domain guides (`software-`, `mob
 |- CLAUDE.md / AGENTS.md # agent operating rules
 |- docs/
 |  |- architecture/  runbooks/  incidents/  reports/  decisions/
+|- specs/               # living behavioral specs (current agreed behavior)
+|- changes/             # open change proposals (spec deltas, pre-code)
 |- src/  test/  ci/
 ```
 
@@ -113,25 +115,51 @@ Runbook: prerequisites, step-by-step commands, success criteria, rollback, fast 
 - No off-record work. Every meaningful change updates `CHANGELOG.md`.
 - Agents/automation never push without explicit user request. Track everything.
 
-## 11. Decision Process
+## 11. Spec-Driven Change Flow
+
+Non-trivial changes start as a versioned specification agreed **before** code. This complements the backlog (§10) and decisions (§12): the backlog says *what* to do, the spec says exactly *how "done" behaves*, the ADR records *why*. It removes requirements that live only in chat (see §15).
+
+### 11.1 Two Artifact Sets
+
+- **Living specs** (`specs/`): current, agreed behavior per capability — the behavioral contract of what the system does *now*. Changed only when a proposal is archived.
+- **Change proposals** (`changes/<id>/`): a proposed delta opened before coding. Holds intent (why + what), the spec delta (behavior added/modified/removed), a task breakdown, and optional design notes for non-obvious decisions.
+
+### 11.2 Lifecycle
+
+1. **Draft**: open a proposal from a `TODO.md` item; state intent, scope, and spec delta.
+2. **Agree**: review the spec delta with stakeholders/AI — this is the gate before any code.
+3. **Implement**: build to the agreed spec; track tasks against the backlog ID.
+4. **Validate**: Definition of Done (§14) — real behavior matches the spec delta.
+5. **Archive**: merge the delta into the living `specs/`, record rationale as an ADR (§12), update `CHANGELOG.md`, close the `TODO.md` item.
+
+### 11.3 Rules
+
+- No non-trivial code before its spec delta is agreed and versioned.
+- One proposal maps to one or more backlog IDs; backlog is the entry point (§10), the spec is the behavioral contract, the ADR is the rationale — no restating across them.
+- Specs describe behavior and outcomes, not implementation; keep each requirement testable and mapped to a test (§5).
+- Archiving is idempotent and auditable: living specs reflect merged changes only.
+- Tooling is optional — e.g. OpenSpec provides a CLI, validation, and archival for exactly this flow — but the **flow is mandatory, the tool is not**. Any adopted tool's generated agent instructions must not conflict with `CLAUDE.md`/`AGENTS.md`.
+- Trivial or easily reversible changes may skip the proposal but still obey §10, §14, and the `CHANGELOG.md` rule.
+
+## 12. Decision Process
 
 - Record important architectural decisions as ADRs: context, options, decision, consequences.
 - Mark obsolete decisions superseded, not deleted.
 
-## 12. Onboarding & Collaboration
+## 13. Onboarding & Collaboration
 
 - Onboarding: read README + guidelines + CLAUDE/AGENTS; set up env; run tests/lint; simulate change + test + changelog; read one recent incident and one runbook.
 - Keep PRs small and intent-labeled; review for risk, regressions, and verifiability.
 
-## 13. Definition of Done
+## 14. Definition of Done
 
 A change is done only when: code updated; tests updated/passing; docs updated; changelog updated; risks & rollback clarified; validation evidence available. Domain guides add deltas.
 
-## 14. Anti-Patterns
+## 15. Anti-Patterns
 
 - Docs drifting from reality; decisions made only in chat; undocumented hotfixes; silent fallbacks hiding failures; monitoring reporting nominal status without context.
 
-## 15. Templates
+## 16. Templates
 
 ### Operational Report
 
@@ -167,6 +195,24 @@ A change is done only when: code updated; tests updated/passing; docs updated; c
 ## Consequences
 ```
 
+### Change Proposal (Spec-Driven Flow)
+
+```md
+# Change: <id> - <title>
+## Why
+<problem, context, linked backlog IDs>
+## What Changes
+<behavior added / modified / removed, in one paragraph>
+## Spec Delta
+- ADDED: <capability / requirement>
+- MODIFIED: <requirement: before -> after>
+- REMOVED: <requirement + migration / rollback>
+## Tasks
+- [ ] <implementation step>
+## Design Notes (optional)
+<non-obvious decisions; promote to an ADR on archive>
+```
+
 ### Release Readiness
 
 ```md
@@ -178,6 +224,6 @@ A change is done only when: code updated; tests updated/passing; docs updated; c
 - Owner:
 ```
 
-## 16. Final Rule
+## 17. Final Rule
 
 Prefer clarity, traceability, and repeatability over apparent speed. If a change cannot be explained and validated by someone who was not present, the process is not mature yet.

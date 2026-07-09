@@ -60,7 +60,7 @@ App releases, libraries/packages, APIs & event schemas, mobile app versions, DB/
 
 - Mark deprecated behavior explicitly; document removal target version/window; communicate migration path early; monitor active usage before removal.
 
-## 13. Validation (core §13 + deltas)
+## 13. Validation (core §14 + deltas)
 
 Also: version bump matches real impact; tag strategy respected.
 

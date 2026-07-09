@@ -51,7 +51,7 @@ Infra provisioning & lifecycle, configuration management, release/rollback opera
 - Alerts map to owner + runbook; reliability metrics include uptime + MTTR; scheduled operational reports.
 - Every incident: dated post-mortem (core Incident template); every high-risk change: runbook entry; repeat incidents trigger process-hardening tasks.
 
-## 9. Definition of Done (core §13 + deltas)
+## 9. Definition of Done (core §14 + deltas)
 
 Also: Terraform/Ansible checks passed; rollout followed preflight/dry-run/canary/post-check; monitoring impact validated.
 

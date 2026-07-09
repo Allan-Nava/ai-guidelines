@@ -14,6 +14,7 @@ The format follows Keep a Changelog and SemVer.
 - Deduplicated `CLAUDE.md` and `AGENTS.md` into complementary roles (non-negotiables/quality vs repository model/workflow).
 
 ### Added
+- Added a **Spec-Driven Change Flow** to the core (`guidelines.md` §11) plus a Change Proposal template (§16): non-trivial changes are agreed as a versioned spec before code, then archived into living `specs/` and reconciled with the backlog, ADRs, and changelog. Documents the flow (tool-agnostic; aligns with tools such as OpenSpec without mandating any) and adds `specs/`/`changes/` to the repository structure. Renumbered subsequent core sections to §12–§17 and updated the `core §13`→`core §14` (Definition of Done) cross-references in the domain guides.
 - Anti-duplication rule and the core/delta repository model, documented in `CLAUDE.md` and `AGENTS.md`.
 - Reusable Release Readiness template in the core (`guidelines.md`), extended by mobile releases.
 
